@@ -16,10 +16,10 @@
                             <strong>Success! </strong> {{ session('success') }}
                         </div>
                     @endif
-                    @if (session('fail'))
+                    @if (session('error'))
                         <div class="alert alert-danger alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <strong>OOPS ! </strong> {{ session('fail') }}
+                            <strong>OOPS ! </strong> {{ session('error') }}
                         </div>
                     @endif
                     @if($errors->any())
