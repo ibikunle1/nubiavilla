@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\User;
 use App\Models\Weader;
 use App\Models\Expense;
@@ -54,7 +55,12 @@ class HomeController extends Controller
         return view('users.expenses.import');
     }
     public function import(Request $request){
+    try {
         Excel::import(new ImportExpense, $request->file('file')->store('files'));
+       }
+       catch (\Exception $e) {
+       return back()->withError(__('There was a problem with the import. Please try again. ').$e->getMessage()); 	 
+       }
 
         return redirect(route('expenses.index'))->with('success', 'Import successful');               
     }
