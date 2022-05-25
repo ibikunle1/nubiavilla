@@ -11,9 +11,13 @@
     </form>
     <ul class="navbar-nav navbar-right">
         <li class="dropdown">
-            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="{{ asset('assets/img_avatar3.png') }}" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, {{ ucwords(Auth::user()->name) }}</div></a>
+            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user"> 
+            @if(auth()->user()->profile) 
+               <img alt="image" src="{{asset('assets/picture/'.auth()->user()->profile)}}" class="rounded-circle mr-1" style="height:40px;width:40px"> 
+            @else 
+              <img alt="image" src="{{asset('assets/img_avatar3.png')}}" class="rounded-circle mr-1"> 
+            @endif
+            <div class="d-sm-none d-lg-inline-block">Hi, {{ ucwords(Auth::user()->name) }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
                 <a href="{{route('home')}}" class="dropdown-item"> <i class="fas fa-user mr-2"></i> {{ _('Profile')}} </a>
                  <div class="dropdown-divider"></div>
